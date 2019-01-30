@@ -1,7 +1,16 @@
 <html>
+<!-- 
+	Développeur      : Clément Colné (L2 Informatique au moment de la création)
+	Date de création : Eté 2018
+	Description      : Ce site web a pour but de mettre à dispostion des étudiants de la Faculté des Sciences et Technologies de Vandoeuvres-Lès-Nancy
+		               la disponibilité des salles informatiques de la faculté, afin de faciliter l'accès à ces salles pour un travail personnel.               
+	            	   Ce site web est a but non luctatif, il a été créé uniquement pour le bien collectif. 
+	Informations     : Ce site web utilise comme framework CSS Bootstrap, les données des salles sont un fichier au format .ics délivré par l'administation
+					   de la faculté, et le logo utilisé est le logo officiel de la FST.
+	Mise-à-jour      : 30/09/2018
+ -->
     <head>
-		
-	<!-- Global Site Tag (gtag.js) - Google Analytics -->
+	<!-- Google Analytics script -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
@@ -46,17 +55,15 @@
 		}
 		
 	</style>
-	<link rel="icon" href="favicon.png" />
 	
-	</br></br></br>
-	<h3><img src="logo.png" alt="Logo Libre ou Pas"></h3>
+	<h3><img src="logo-fst.png" alt="Logo FST"></h3>
 	</br></br></br>
 	
-	<body>
+    <body>
 	
         <?php
 			
-			// compteur d'utilisations (= nombre de chargements de la page)
+			// compteur d'utilisations global (= nombre de chargements de la page)
 			// création du fichier stockant le nombre d'utilisations du site
 			if(!file_exists('./compteur_visites/compteur_visites.txt')){
 				$compteur_f = fopen('./compteur_visites/compteur_visites.txt', 'a+');
@@ -65,14 +72,12 @@
 				$compteur_f = fopen('./compteur_visites/compteur_visites.txt', 'r+');
 				$compte = fgets($compteur_f);
 			}
-			
-			// incrémentation du nombre d'utilisations
 			$compte++;
 			fseek($compteur_f, 0);
 			fputs($compteur_f, $compte);
 			fclose($compteur_f);
 			
-			// nombre de visites journalières du site
+			// compteur de visites journalières
 			$nom = date("d_m");
 			$nom .= ".txt";
 			
@@ -83,14 +88,12 @@
 				$compteur_journalier = fopen("./compteur_visites/compteur_journalier/$nom", 'a+');
 				$compte = 0;
 			}
-			
-			// incrémentation du nombre d'utilisations
 			$compte++;
 			fseek($compteur_journalier, 0);
 			fputs($compteur_journalier, $compte);
 			fclose($compteur_journalier);
 			
-			//fichier texte pour la MAJ toutes les 4h
+			// fichier texte pour la mise-à-jour toutes les 4h
 			$MAJ = fopen("maj.txt", "a+");
 			if(empty($MAJ)){
 				$MAJ_var = date("H");
@@ -99,9 +102,9 @@
 				$MAJ_var = fgets($MAJ);
 			}
 					
-			// mise à jour des données sur les salles toutes les 4 heures
+			// mise-à-jour des données sur les salles toutes les 4 heures
 			if( (($MAJ_var + 4) < date("H")) or ((date("H") > 1) and ((date("H") <= 11))) ){
-				// DONNEES SALLES UBUNTU
+				// données sur les salles Ubuntu
 				// j'efface tout le contenu du fichier "ADECal.ics, et je met à jour les données via l'URL
 				fwrite(fopen("ADECal.ics", "w+"), @file_get_contents("https://planning.univ-lorraine.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?resources=24302,24303,24307,24308,24309,24310,24314&projectId=6&calType=ical&nbWeeks=16"));
 				$MAJ = fopen("MAJ.txt", "w+");
@@ -128,13 +131,14 @@
 				$heure .= date("i");
 			}else{
 				$heure = date("H");
-				$heure += 1;
+				$heure += 2;
 				$heure .= ":";
 				$heure .= date("i");
-			}	
+			}
+
 			
-			//initialisation de mes variables salle
-			//par défaut, les salles sont libres
+			// initialisation de mes variables salle
+			// par défaut, les salles sont libres
 			$HP303[0] = "HP 303";
 			$HP303[1] = "LIBRE";
 			$HP303[2] = "";
@@ -170,7 +174,7 @@
 			$HP319[2] = "";
 			$HP319[3] = "";
 			
-			//mes fonctions
+			// mes fonctions
 			function dateJour($jour, $mois){
 				$date = $jour;
 				$date .= "/";
@@ -187,10 +191,10 @@
 				return $debutCours;
 			}
 			
-            //tant que je n'ai pas parcouru tout le fichier, je boucle
+            // tant que je n'ai pas parcouru tout le fichier, je boucle
             $i = 1;
             while ($i <= $count){
-                //je récupère les 7 premières lettres de chaque ligne
+                // je récupère les 7 premières lettres de chaque ligne
 				$DTSTART = "";
                 for($j = 0 ; $j < 8 ; $j++){
                     $DTSTART .= fgetc($data_ubuntu);
@@ -198,7 +202,7 @@
 				for ($j = 0 ; $j < 4 ; $j++){
 					fgetc($data_ubuntu);
 				}
-                //je récupère la date après "DTSTART"
+                // je récupère la date après "DTSTART"
 				$mois = "";
                 for ($k = 0 ; $k < 2 ; $k++){
                     $mois .= fgetc($data_ubuntu);
@@ -211,7 +215,7 @@
 				$date = dateJour($jour, $mois);
 				
 				fgetc($data_ubuntu);
-				//je récupère l'heure et la minute de début  
+				// je récupère l'heure et la minute de début  
 				$heureDebut = "";
 				for ($k = 0 ; $k < 2 ; $k++){
 					$heureDebut .= fgetc($data_ubuntu);
@@ -222,7 +226,7 @@
 					$minuteDebut .= fgetc($data_ubuntu);
 				}
 				
-				//on est sur la MAUVAISE LIGNE ou si le COURS EST FINI, on réinitialise les variables et on passe a la ligne suivante
+				// on est sur la mauvaise ligne ou si le cours est fini, on réinitialise les variables et on passe a la ligne suivante
                 if (($DTSTART != "DTSTART:") or ($heure > heure($heureFin, $minuteFin))){
 					$DTSTART = "";
 					$mois = "";
@@ -233,15 +237,15 @@
 					$minuteFin = "";
 					$nomSalle = "";
 					fgets($data_ubuntu);	
-				//On est sur la BONNE LIGNE et il y a ACTUELLEMENT/PROCHAINEMENT cours
+				// on est sur la bonne ligne et il y a actuellement/prochainement cours
                 }else{
-					//on ignore les caractères qui concernent la date de fin (inutile)
+					// on ignore les caractères qui concernent la date de fin (inutile)
 					fgets($data_ubuntu);					
 					for ($j = 0 ; $j < 14 ; $j++){
 						fgetc($data_ubuntu);
 					}
 					
-					//on enregistre l'heure et la minute de la fin
+					// on enregistre l'heure et la minute de la fin
 					fgetc($data_ubuntu);
 					$heureFin = "";
 					for ($j = 0 ; $j < 2 ; $j++){
@@ -251,9 +255,8 @@
 					for ($j = 0 ; $j < 2 ; $j++){
 						$minuteFin .= fgetc($data_ubuntu);
 					}
-
 					
-					//on enregistre le nom de la salle
+					// on enregistre le nom de la salle
 					fgets($data_ubuntu);
 					fgets($data_ubuntu);
 					for ($j = 0 ; $j < 20 ; $j++){
@@ -263,15 +266,14 @@
 						$nomSalle .= fgetc($data_ubuntu);
 					}
 					
-					if ($heureDebut == "07"){
+					if ($heureDebut == "06"){
 					  $heureDebut = "08";
 					  $heureFin = "10";
-					}else if($heureDebut == "08"){
+					}else if($heureDebut == "07"){
 					  $heureDebut = "09";
-					  $heureFin +=1;
 					}else{
-					  $heureDebut += 1;
-					  $heureFin +=1;
+					  $heureDebut += 2;
+					  $heureFin += 2;
 					}
 					
 					// écriture des informations concernant les salles si elles sont occupées
@@ -334,7 +336,7 @@
 						}
 					}
 					
-					//on réinitialise les variables
+					// on réinitialise les variables
 					$DTSTART = "";
 					$nomSalle = "";
 					$mois = "";
@@ -349,8 +351,8 @@
             // fermeture du fichier de données
             fclose($data_ubuntu);
 			
-			// DONNEES SALLES WINDOWS
-			////MAJ toutes les 4 heures
+			// données des salles Windows
+			// mise-à-jour toutes les 4 heures
 			if( (($MAJ_var + 4)<date("H")) or ((date("H")>1) and ((date("H")<=11))) ){
 				// j'efface tout le contenu du fichier "ADECal.ics, et je met à jour les données via l'URL
 				fwrite(fopen("ADECal_windows.ics", "w+"), @file_get_contents("https://planning.univ-lorraine.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?resources=9349,24304,24305,24306,24311,24312,57501&projectId=6&calType=ical&nbWeeks=16"));
@@ -365,8 +367,8 @@
             $fichier = file('ADECal_windows.ics');
             $count = count($fichier);
 			
-			//initialisation de mes variables salle
-			//par défaut, les salles sont libres
+			// initialisation de mes variables salle
+			// par défaut, les salles sont libres
 			$HP301[0] = "HP 301";
 			$HP301[1] = "LIBRE";
 			$HP301[2] = "";
@@ -397,10 +399,10 @@
 			$HP320[2] = "";
 			$HP320[3] = "";
 			
-            //tant que je n'ai pas parcouru tout le fichier, je boucle
+            // tant que je n'ai pas parcouru tout le fichier, je boucle
             $i = 1;
             while ($i <= $count){
-                //je récupère les 7 premières lettres de chaque ligne
+                // je récupère les 7 premières lettres de chaque ligne
 				$DTSTART = "";
                 for($j = 0 ; $j < 8 ; $j++){
                     $DTSTART .= fgetc($data_windows);
@@ -408,7 +410,7 @@
 				for ($j = 0 ; $j < 4 ; $j++){
 					fgetc($data_windows);
 				}
-                //je récupère la date après "DTSTART"
+                // je récupère la date après "DTSTART"
 				$mois = "";
                 for ($k = 0 ; $k < 2 ; $k++){
                     $mois .= fgetc($data_windows);
@@ -421,7 +423,7 @@
 				$date = dateJour($jour, $mois);
 				
 				fgetc($data_windows);
-				//je récupère l'heure et la minute de début  
+				// je récupère l'heure et la minute de début  
 				$heureDebut = "";
 				for ($k = 0 ; $k < 2 ; $k++){
 					$heureDebut .= fgetc($data_windows);
@@ -432,7 +434,7 @@
 					$minuteDebut .= fgetc($data_windows);
 				}
 				
-				//on est sur la MAUVAISE LIGNE ou si le COURS EST FINI, on réinitialise les variables et on passe a la ligne suivante
+				// on est sur la mauvaise ligne ou si le cours est fini, on réinitialise les variables et on passe a la ligne suivante
                 if (($DTSTART != "DTSTART:") or ($heure > heure($heureFin, $minuteFin))){
 					$DTSTART = "";
 					$mois = "";
@@ -443,15 +445,15 @@
 					$minuteFin = "";
 					$nomSalle = "";
 					fgets($data_windows);	
-				//On est sur la BONNE LIGNE et il y a ACTUELLEMENT/PROCHAINEMENT cours
+				// on est sur la bonne ligne et il y a actuellement/prochainement cours
                 }else{
-					//on ignore les caractères qui concernent la date de fin (inutile)
+					// on ignore les caractères qui concernent la date de fin (inutile)
 					fgets($data_windows);					
 					for ($j = 0 ; $j < 14 ; $j++){
 						fgetc($data_windows);
 					}
 					
-					//on enregistre l'heure et la minute de la fin
+					// on enregistre l'heure et la minute de la fin
 					fgetc($data_windows);
 					$heureFin = "";
 					for ($j = 0 ; $j < 2 ; $j++){
@@ -462,7 +464,7 @@
 						$minuteFin .= fgetc($data_windows);
 					}
 					
-					//on enregistre le nom de la salle
+					// on enregistre le nom de la salle
 					fgets($data_windows);
 					fgets($data_windows);
 					for ($j = 0 ; $j < 20 ; $j++){
@@ -472,22 +474,23 @@
 						$nomSalle .= fgetc($data_windows);
 					}
 					
-					//opération pas propre (car on est sur des chaînes de caractères et non des entiers) pour mettre augmenter de 2 heures
+					// opération pas propre (car on est sur des chaînes de caractères et non des entiers) pour augmenter de 2 heures
+					// attention, "08" + 2 = 8 et non 08
 					if($heureDebut < 8){
 						$heureDebutTmp = "0";
-						$heureDebut += 1;
+						$heureDebut += 2;
 						$heureDebutTmp .= $heureDebut;
 						$heureDebut = $heureDebutTmp;
 					}else{
-						$heureDebut += 1;
+						$heureDebut += 2;
 					}
 					if($heureFin < 8){
 						$heureFinTmp = "0";
-						$heureFin += 1;
+						$heureFin += 2;
 						$heureFinTmp .= $heureFin;
 						$heureFin = $heureFinTmp;
 					}else{
-						$heureFin += 1;
+						$heureFin += 2;
 					}
 					
 					// écriture des informations concernant les salles si elles sont occupées
@@ -542,7 +545,7 @@
 						}
 					}
 					
-					//on réinitialise les variables
+					// on réinitialise les variables
 					$DTSTART = "";
 					$nomSalle = "";
 					$mois = "";
@@ -559,7 +562,7 @@
 			
 			// mise à jour de l'heure actuelle (besoin de h+2)
 			$heureReelle = date("H");
-			$heureReelle += 1;
+			$heureReelle += 2;
 			$heureReelle .= ":";
 			$heureReelle .= date("i");
 			
@@ -588,7 +591,7 @@
 				fclose($data);
 			}
 			
-			// si on prend contact
+			// contact
 			if(!empty($_GET['contact'])){
 				$data = fopen("contact.txt", "a+");
 				$carnet_adresses = fopen("carnet_adresses.txt", "a+");
@@ -624,7 +627,7 @@
 						<th scope="col">OCCUP&Eacute;E DE</th>			
 						<th scope="col">&Agrave;</th>
 					</thead>
-<tbody>
+					<tbody>
 						<tr>
 							<td><?php echo $HP301[0]; echo "  (Windows)";?></td>	
 							<td><?php if($HP301[1] == "LIBRE"){ echo "<v>"; echo $HP301[1];}else{echo "<r>"; echo $HP301[1];}?></td>			
