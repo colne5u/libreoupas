@@ -1,106 +1,55 @@
-body
-{
-	background-color: #e1dede;
-	font-family: sans-serif;
+/* page en général */
+body {
+  font-family: 'Raleway', Helvetica, Arial, sans-serif;
 }
 
-.main
-{
-	background-color: #eeeeee;
-	padding: 50px;
+header {
+  padding-top: 80px;
 }
 
-h1
-{
-	text-align: center;
-	margin: 50px;
+/* menu */
+navbar {
+  font-size: 1.5em;
 }
 
-h2
-{
-	text-align: center;
+/* corps de la page */
+corps {
+  text-align: justify;
 }
 
-table
-{
-	margin: auto;
-	width: 90%;
-	min-width: 860px;
-	border-spacing: 0;
+/* pied de page */
+footer {
+  margin-bottom: 30px;
 }
 
-tr, td, th
-{
-	position: relative;
-	font-size: 24px;
-	white-space: nowrap;
-	padding: 8px;
-	border-bottom: 1px solid #bdc3c7; 
+.trait {
+  background-color: #FF8C00; /* même couleur que la barre de navigation */
+  height: 1pt;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-tr:nth-child(even)
-{
-	background-color: #f0f0f0;
+/* liens */
+a {
+  color: black;
 }
 
-tr:nth-child(odd)
-{
-	background-color: #f9f9f9;
+a:hover {
+  color: #FF8C00;
 }
 
-.cours
-{
-	position: absolute;
-	display: inline-block;
-	background-color: #e74c3c;
-	border: 1px solid #2c3e50;
-	border-radius: 5px;
-	top: 1px;
-	bottom: 1px;
-	color: white;
-	font-size: 12px;
-	overflow: hidden;
-	padding-top: 4px;
-	text-align: center;
-	z-index: 2;
+/* formulaire */
+.CGU_formulaire {
+  font-style: italic;
+  font-size: 1em;
 }
 
-#indicHeure
-{
-	position: absolute;
-	width: 2px;
-	background-color: #2980b9;
-	z-index: 1;
-	top: 46px;
-}
-
-v
-{
-	color: #27ae60;
-}
-
-r
-{
-	color: #c0392b;
-}
-
-footer
-{
-	text-align: center;
-	width: 100%;
-}
-
-.bouton
-{
-	display: inline-block;
-	width: 30%;
-	margin: 20px;
-	padding: 40px;
-	border-radius: 60px;
-	border: 1px solid #bdc3c7;
-	background-color: white;
-	text-align: center;
-	font-weight: bold;
-	font-size: 24px;
-	cursor: pointer;
+/* affichage chantiers */
+.chantier {
+  padding: 15px;
+  text-align: justify;
+  font-size: 1.3em;
+  background-color: #DCDCDC;
+  border: 2px solid black;
+  border-radius: 20px;
 }
