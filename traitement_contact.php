@@ -1,18 +1,31 @@
 <?php
 
-  if(isset($_POST['email']) && isset($_POST['contact'])) {
-    if(!file_exists('./contact.txt')) {
-        $contact_f = fopen('./contact.txt', 'a+');
-    }else{
-        $contact_f = fopen('./contact.txt', 'a');
+  /* default values for not required fields */
+  $contact = 'non renseigné';
+
+  /* if mail is filled */
+  if(isset($_POST['email'])) {
+    $mail = htmlspecialchars($_POST['email']);
+    // if text is filled
+    if(isset($_POST['contact'])) {
+      $contact = htmlspecialchars($_POST['contact']);
     }
-    $texte = htmlspecialchars($_POST['contact']);
-    $texte .= "\n";
-    $texte .= htmlspecialchars($_POST['email']);
-    $texte .= "\n";
-    fputs($contact_f, $texte);
-    fclose($contact_f);
   }
-  header('Location : http://clementcolne.com/libreoupas/');
+
+  /* concatenation of the message */
+  $message = 'Mail : ';
+  $message .= $mail.PHP_EOL;
+  $message .= $contact;
+
+  /* sending the message */
+  mail(
+    'libreoupas@outlook.com',
+    'contact - libreoupas.com',
+    utf8_decode($message),
+    'From : contact@libreoupas.com'
+  );
+
+  /* after the treatment redirection to main page */
+  header('Location: http://www.clementcolne.com/libreoupas/');
 
 ?>

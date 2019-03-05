@@ -1,7 +1,3 @@
-<!--
-    TODO : MODIFIER LE CSS POUR RETIRER LES DEPENDANCES A FONT AWESOME ET BOOTSTRAP
--->
-
 <html>
     <head>
         <title>libreoupas/contact</title>
