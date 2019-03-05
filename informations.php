@@ -42,4 +42,8 @@
 
     ?>
 
+    <p>Le compteur de visites à été initialisé le 01/09/2018</p>
+    <p>Nombre de visites total : <?php echo $visites_total ?>
+    <p>Nombre de visites journalière : <?php echo $compteur_journalier ?></p>
+
 </html>
