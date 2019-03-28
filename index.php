@@ -7,6 +7,8 @@
 		<?php
             include "assets/php/navigation.php";
             include "assets/php/theme.php";
+            include "assets/php/edtLoad.php";
+            include "assets/php/edt.php";
         ?>
         <?php addCorrectTheme() ?>
     </head>
@@ -18,7 +20,8 @@
                 </a>
             </header>
             <?php addNavigationBar(); ?>
-            <section id="content">
+            <section id="content" class="row">
+                <?php addEdt() ?>
             </section>
         </div>
         <script src="assets/js/jquery.min.js"></script>

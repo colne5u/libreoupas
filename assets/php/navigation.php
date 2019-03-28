@@ -44,7 +44,7 @@
         if (!isset($_GET["tab"]) || $_GET["tab"] == "") {
             $code = $code . ' class="active"';
         }
-        $code = $code . '><a class="nav-link" href="index.php">Home</a></li>';
+        $code = $code . '><a class="nav-link" href="index.php">Accueil</a></li>';
         return $code;
     }
 
