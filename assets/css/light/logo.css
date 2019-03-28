@@ -13,3 +13,10 @@
     background-color: #f2dede;
     border-color: #eed3d7;
 }
+
+.range {
+    margin-top: 10;
+    margin-bottom: 10;
+    padding-left: 0;
+    padding-right: 0;
+}

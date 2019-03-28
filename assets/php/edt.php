@@ -39,8 +39,20 @@
             $code = $code .'   <div class="col-lg-3">
                             <h3> ' . $name . ' <img src="assets/img/' . ($i < 7 ? 'Linux.png' : 'Windows.png') . '"/></h3>
                         </div>
-                        <div class="col-lg-9">
-                        </div>
+                        <div class="col-lg-9">';
+            $debut = 8;
+            $filler = 0;
+            asort($roomEdt);
+            foreach ($roomEdt as $range) {
+                $filler = intval($range['debut'] - $debut);
+                if ($filler > 0) {
+                    $code = $code . '<div class="col-lg-' . $filler . '"></div>';
+                }
+                $size = $range['fin'] - $range['debut'];
+                $code = $code . '<div class="panel panel-warning range col-lg-' . $size . '"><div class="panel-heading">' . $range['affichage'] . '</div></div>';
+                $debut = $debut + $filler + $size;
+            }
+            $code = $code . '</div>
                     </div>
                         ';
             $i++;

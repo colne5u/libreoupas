@@ -13,3 +13,10 @@
     background-color: #ee5f5b;
     border-color: rgba(0, 0, 0, 0.6);
 }
+
+.range {
+    margin-top: 10;
+    margin-bottom: 10;
+    padding-left: 0;
+    padding-right: 0;
+}
