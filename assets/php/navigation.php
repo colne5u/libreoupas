@@ -18,7 +18,25 @@
                     <ul class="nav navbar-nav">
                         ';
         $code = $code . addNavigationHome();
-        $code = $code . '</ul>
+        $code = $code . '
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Options <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li class="form-group">
+                                    <input type="checkbox" id="onlyLinux"   onclick="addOnlyLinux()"   autocomplete="off"/>
+                                    <label for="onlyLinux">Uniquement Linux</label>
+                                </li>
+                                <li class="form-group">
+                                    <input type="checkbox" id="onlyWindows" onclick="addOnlyWindows()" autocomplete="off"/>
+                                    <label for="onlyLinux">Uniquement Windows</label>
+                                </li>
+                                <li class="form-group">
+                                    <input type="checkbox" id="onlyFree"    onclick="addOnlyFree()"    autocomplete="off"/>
+                                    <label for="onlyLinux">Uniquement Libres</label>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav navbar-right">';
         $code = $code . addNavigationItem("Administrateur");

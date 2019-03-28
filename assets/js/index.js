@@ -49,6 +49,37 @@
     	xhr.send(null);
     }
 
+    function addOnlyLinux() {
+        if ($("#onlyLinux").prop('checked')) {
+            $("#onlyWindows").prop('checked', false);
+            document.cookie = "ONLY_WIN=0; expires=Fri, 31 Dec 2100 23:59:59 GMT; path=/";
+            document.cookie = "ONLY_LINUX=1; expires=Fri, 31 Dec 2100 23:59:59 GMT; path=/";
+        } else {
+            document.cookie = "ONLY_LINUX=0; expires=Fri, 31 Dec 2100 23:59:59 GMT; path=/";
+        }
+        window.location.reload();
+    }
+
+    function addOnlyWindows() {
+        if ($("#onlyWindows").prop('checked')) {
+            $("#onlyLinux").prop('checked', false);
+            document.cookie = "ONLY_WIN=1; expires=Fri, 31 Dec 2100 23:59:59 GMT; path=/";
+            document.cookie = "ONLY_LINUX=0; expires=Fri, 31 Dec 2100 23:59:59 GMT; path=/";
+        } else {
+            document.cookie = "ONLY_WIN=0; expires=Fri, 31 Dec 2100 23:59:59 GMT; path=/";
+        }
+        window.location.reload();
+    }
+
+    function addOnlyFree() {
+        if ($("#onlyWindows").prop('checked')) {
+            document.cookie = "ONLY_FREE=1; expires=Fri, 31 Dec 2100 23:59:59 GMT; path=/";
+        } else {
+            document.cookie = "ONLY_FREE=0; expires=Fri, 31 Dec 2100 23:59:59 GMT; path=/";
+        }
+        window.location.reload()
+    }
+
     $(function(){
         var cookie = getCookie("theme");
         if (cookie == "") {
@@ -62,4 +93,19 @@
            document.cookie = "theme=" + $(this).attr('data-theme') + "; expires=Fri, 31 Dec 2100 23:59:59 GMT; path=/";
            window.location.reload()
         });
+        if (getCookie("ONLY_LINUX") == "1") {
+            $("#onlyLinux").prop("checked", true);
+        } else {
+            $("#onlyLinux").prop("checked", false);
+        }
+        if (getCookie("ONLY_WIN") == "1") {
+            $("#onlyWindows").prop("checked", true);
+        } else {
+            $("#onlyWindows").prop("checked", false);
+        }
+        if (getCookie("ONLY_FREE") == "1") {
+            $("#onlyFree").prop("checked", true);
+        } else {
+            $("#onlyFree").prop("checked", false);
+        }
     });

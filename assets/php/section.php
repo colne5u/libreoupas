@@ -3,7 +3,7 @@
         include "assets/php/contact.php";
         include "assets/php/admin.php";
 
-        function addContent($edt, $libre) {
+        function addContent($edt, $free, $type) {
             if (isset($_GET["tab"])) {
                 switch ($_GET["tab"]) {
                     case "Contact": {
@@ -15,11 +15,11 @@
                         break;
                     }
                     default: {
-                        addEdt($edt, $libre);
+                        addEdt($edt, $free, $type);
                     }
                 }
             } else {
-                addEdt($edt, $libre);
+                addEdt($edt, $free, $type);
             }
         }
 

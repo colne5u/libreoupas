@@ -1,6 +1,6 @@
 <?php
 
-    function addEdt($edt, $libre) {
+    function addEdt($edt, $free, $type) {
         $code =
             '<div class="col-lg-12">
                 <div class="panel panel-info">
@@ -18,7 +18,7 @@
                     </div>
                     <div class="panel-body">
                         <div class="contained-fluid">
-                            ' . addCurrentEdt($edt, $libre) . '
+                            ' . addCurrentEdt($edt, $free, $type) . '
                         </div>
                     </div>
                 </div>
@@ -26,37 +26,43 @@
         echo $code;
     }
 
-    function addCurrentEdt($edt, $libre) {
+    function addCurrentEdt($edt, $free, $type) {
         $code = '';
         $i = 0;
+        $onlyLinux  = isset($_COOKIE["ONLY_LINUX"]) && $_COOKIE["ONLY_LINUX"];
+        $onlyWindow = isset($_COOKIE["ONLY_WIN"])   && $_COOKIE["ONLY_WIN"];
+        $onlyFree   = isset($_COOKIE["ONLY_FREE"])  && $_COOKIE["ONLY_FREE"];
         foreach ($edt as $name => $roomEdt) {
-            $code = $code . '<div class="row panel';
-            if ($libre[$name]) {
-                $code = $code . ' free">';
-            } else {
-                $code = $code . ' nfree">';
-            }
-            $code = $code .'
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                            <h5> ' . $name . ' <img src="assets/img/' . ($i < 7 ? 'Linux.png' : 'Windows.png') . '"/></h5>
-                        </div>
-                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">';
-            $debut = 8;
-            $filler = 0;
-            asort($roomEdt);
-            foreach ($roomEdt as $range) {
-                $filler = intval($range['debut'] - $debut);
-                if ($filler > 0) {
-                    $code = $code . '<div class="col-lg-' . $filler . ' col-md-' . $filler . ' col-sm-' . $filler . ' col-xs-' . $filler . '"></div>';
+            if (($onlyLinux && $type[$name] == "Linux") || ($onlyWindow && $type[$name] == "Windows") || (!$onlyLinux && !$onlyWindow)) {
+                if ($onlyFree && $free[$name] || !$onlyFree) {
+                    $code = $code . '<div class="row panel';
+                    if ($free[$name]) {
+                        $code = $code . ' free">';
+                    } else {
+                        $code = $code . ' nfree">';
+                    }
+                    $code = $code .'
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <h5> ' . $name . ' <img src="assets/img/' . $type[$name] . '.png"/></h5>
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">';
+                    $start = 8;
+                    $filler = 0;
+                    asort($roomEdt);
+                    foreach ($roomEdt as $range) {
+                        $filler = intval($range['start'] - $start);
+                        if ($filler > 0) {
+                            $code = $code . '<div class="col-lg-' . $filler . ' col-md-' . $filler . ' col-sm-' . $filler . ' col-xs-' . $filler . '"></div>';
+                        }
+                        $size = $range['end'] - $range['start'];
+                        $code = $code . '<div class="panel range col-lg-' . $size . ' col-md-' . $size . ' col-sm-' . $size . ' col-xs-' . $size . '"><div class="panel-heading">' . $range['text'] . '</div></div>';
+                        $start = $start + $filler + $size;
+                    }
+                    $code = $code . '</div>
+                            </div>
+                                ';
                 }
-                $size = $range['fin'] - $range['debut'];
-                $code = $code . '<div class="panel range col-lg-' . $size . ' col-md-' . $size . ' col-sm-' . $size . ' col-xs-' . $size . '"><div class="panel-heading">' . $range['affichage'] . '</div></div>';
-                $debut = $debut + $filler + $size;
             }
-            $code = $code . '</div>
-                    </div>
-                        ';
-            $i++;
         }
         return $code;
     }

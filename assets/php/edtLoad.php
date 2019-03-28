@@ -1,78 +1,77 @@
 <?php
-	//si le fichier agenda n'existe pas ou n'a pas été téléhargé depuis plus de 4h (60 * 60 * 4 = 14400)
+    // If no file or not recently updated (4h)
 	if (!(file_exists("assets/ics/agenda.ics") && (time() - filemtime('assets/ics/agenda.ics')) < 14400)) {
-		//recupère les ressources sur le site de l'université
+        // University's file
 		$url = "https://planning.univ-lorraine.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?resources=24302,24303,24307,24308,24309,24310,24314,24304,24305,24306,24311,24312,57501&projectId=6&calType=ical&nbWeeks=1";
 		$file = fopen('assets/ics/agenda.ics', 'w+');
 
-		//on garde une copie locale pour soulager le serveur de l'univ
+        // Local's copy
 		$content = file_get_contents($url, true);
 		fwrite($file, $content);
 		fclose($file);
 	}
 
-	// on ouvre le fichier contenant les données agenda
 	$data = fopen('assets/ics/agenda.ics', 'r');
+	$today = date('d');
+	$hour = date('H') + (date('i') / 60.0);
 
-	// initialisation de la date et de l'heure actuelle
-	$dateJour = date('d');
-	$heureReelle = date('H') + (date('i') / 60.0);
-
-	//initialisation de l'edt, ex $edt["HP 310"][1] corresponds au 2eme cours de la journée en salle HP 310
-	$salles = array("HP 303", "HP 309", "HP 310", "HP 311", "HP 312", "HP 315", "HP 319", "HP 301", "HP 306", "HP 307", "HP 316", "HP 318", "HP 320");
-	foreach ($salles as $salle) {
-		$edt[$salle] = array();
-		$libre[$salle] = true;
+	$rooms = array("HP 303" => "Linux",
+                   "HP 309" => "Linux",
+                   "HP 310" => "Linux",
+                   "HP 311" => "Linux",
+                   "HP 312" => "Linux",
+                   "HP 315" => "Linux",
+                   "HP 319" => "Linux",
+                   "HP 301" => "Windows",
+                   "HP 306" => "Windows",
+                   "HP 307" => "Windows",
+                   "HP 316" => "Windows",
+                   "HP 318" => "Windows",
+                   "HP 320" => "Windows");
+	foreach ($rooms as $room => $roomType) {
+		$edt[$room] = array();
+        $type[$room] = $roomType;
+		$free[$room] = true;
 	}
 
-	//decallage de l'agenda téléchargé
-	$offsetHeure = 1;
+	$hourOffset = 1;
+	while (($line = fgets($data)) !== false) {
+		$key = substr($line, 0, 7);
 
-	//tant que l'on a pas parcouru tout le fichier, on boucle
-	while (($ligne = fgets($data)) !== false) {
-		//on récupère les 7 premières lettres de chaque ligne
-		$key = substr($ligne, 0, 7);
-
-		//si la clé corresponds à la ligne indiquant le début du cours
 	    if ($key == "DTSTART") {
-			$jour = substr($ligne, 14, 2); //jour auquel le cours a lieu
-			$heureDebut = intval(substr($ligne, 17, 2)) + $offsetHeure;
-			$minuteDebut = intval(substr($ligne, 19, 2));
+            $day = substr($line, 14, 2);
+            // Event's start
+			$startHour = intval(substr($line, 17, 2)) + $hourOffset;
+			$startMin  = intval(substr($line, 19, 2));
 
-			//on passe a la ligne suivante (DTEND)
-			$ligne = fgets($data);
+            // Event's end
+			$line = fgets($data);
+			$endHour = intval(substr($line, 15, 2)) + $hourOffset;
+			$endMin  = intval(substr($line, 17, 2));
 
-			//on enregistre l'heure et la minute de la fin
-			$heureFin = intval(substr($ligne, 15, 2)) + $offsetHeure;
-			$minuteFin = intval(substr($ligne, 17, 2));
-
-			//on passe 2 lignes (LOCATION)
+			// Trash location + Event's name
 			fgets($data);
-			$ligne = fgets($data);
+			$line = fgets($data);
+			$name = substr($line, 20, 6);
 
-			$nomSalle = substr($ligne, 20, 6);
+			if ($day == $today && $name !== false) {
+				$index = count($edt[$name]); //index du cours dans cette salle
 
-			//ce cours a lieu aujourd'hui et a une salle définie, on l'ajoute à l'edt
-			if ($jour == $dateJour && $nomSalle !== false) {
-				$indexCours = count($edt[$nomSalle]); //index du cours dans cette salle
+				$edt[$name][$index]['start'] = $startHour + ($startMin / 60.0); //ex 10h15 = 10.25
+				$edt[$name][$index]['end'] = $endHour + ($endMin / 60.0);
 
-				$edt[$nomSalle][$indexCours]['debut'] = $heureDebut + ($minuteDebut / 60.0); //ex 10h15 = 10.25
-				$edt[$nomSalle][$indexCours]['fin'] = $heureFin + ($minuteFin / 60.0);
+				$text = ($startHour < 10 ? '0' : '') . $startHour . ':'
+					   .($startMin  < 10 ? '0' : '') . $startMin  . '<br/>'
+					   .($endHour   < 10 ? '0' : '') . $endHour   . ':'
+					   .($endMin    < 10 ? '0' : '') . $endMin;
+				$edt[$name][$index]['text'] = $text;
 
-				$texte = ($heureDebut < 10 ? '0' : '').$heureDebut.':'
-					.($minuteDebut < 10 ? '0' : '').$minuteDebut.'<br>'
-					.($heureFin < 10 ? '0' : '').$heureFin.':'
-					.($minuteFin < 10 ? '0' : '').$minuteFin;
-				$edt[$nomSalle][$indexCours]['affichage'] = $texte;
-
-				//si l'heure actuelle est comprise entre l'heure de début et l'heure de fin, la salle n'est pas libre
-				if ($heureReelle > $edt[$nomSalle][$indexCours]['debut'] && $heureReelle < $edt[$nomSalle][$indexCours]['fin']) {
-					$libre[$nomSalle] = false;
+				if ($hour > $edt[$name][$index]['start'] && $hour < $edt[$name][$index]['end']) {
+					$free[$name] = false;
                 }
 			}
 		}
 	}
 
-	//fermeture du fichier de données
 	fclose($data);
 ?>
