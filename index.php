@@ -5,10 +5,11 @@
         <title>libreoupas</title>
         <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico" />
 		<?php
+            include "assets/php/visitor.php";
+            include "assets/php/section.php";
             include "assets/php/edtLoad.php";
             include "assets/php/navigation.php";
             include "assets/php/theme.php";
-            include "assets/php/edt.php";
         ?>
         <?php addCorrectTheme() ?>
     </head>
@@ -21,7 +22,7 @@
             </header>
             <?php addNavigationBar(); ?>
             <section id="content" class="row">
-                <?php addEdt($edt, $libre) ?>
+                <?php addContent($edt, $libre) ?>
             </section>
             <footer class="page-footer text-center">
                 Designed by <a href="https://www.nresoftware.fr">NRESoftware</a>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;Created by <a href="http://clementcolne.com/">Clement Colne</a>
