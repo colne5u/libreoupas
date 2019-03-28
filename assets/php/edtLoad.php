@@ -7,7 +7,6 @@
 
 		//on garde une copie locale pour soulager le serveur de l'univ
 		$content = file_get_contents($url, true);
-        var_dump($content);
 		fwrite($file, $content);
 		fclose($file);
 	}
