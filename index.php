@@ -23,6 +23,9 @@
             <section id="content" class="row">
                 <?php addEdt($edt, $libre) ?>
             </section>
+            <footer class="page-footer text-center">
+                Designed by <a href="https://www.nresoftware.fr">NRESoftware</a>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;Created by <a href="http://clementcolne.com/">Clement Colne</a>
+            </footer
         </div>
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>
