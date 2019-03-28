@@ -5,9 +5,9 @@
         <title>libreoupas</title>
         <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico" />
 		<?php
+            include "assets/php/edtLoad.php";
             include "assets/php/navigation.php";
             include "assets/php/theme.php";
-            include "assets/php/edtLoad.php";
             include "assets/php/edt.php";
         ?>
         <?php addCorrectTheme() ?>
@@ -16,7 +16,7 @@
         <div class="container-fluid">
             <header class="page-header">
                 <a href="index.php">
-                    <img id="Logo" src="assets/img/Logo.png" class="logo img-responsive"/>
+                    <img id="Logo" src="assets/img/logo.png" class="logo img-responsive"/>
                 </a>
             </header>
             <?php addNavigationBar(); ?>

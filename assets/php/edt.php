@@ -26,6 +26,10 @@
 
     function addCurrentEdt() {
         $code = "";
+        $i = 0;
+        foreach ($edt as $name => $roomEdt) {
+            // code...
+        }
         return $code;
     }
 

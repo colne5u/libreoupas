@@ -1,14 +1,16 @@
 <?php
 	//si le fichier agenda n'existe pas ou n'a pas été téléhargé depuis plus de 4h (60 * 60 * 4 = 14400)
-	if (!(file_exists("assets/ics/agenda.ics") && (time() - filemtime('assets/ics/agenda.ics')) < 14400)) {
+	//if (!(file_exists("assets/ics/agenda.ics") && (time() - filemtime('assets/ics/agenda.ics')) < 14400)) {
 		//recupère les ressources sur le site de l'université
-		$url = 'https://planning.univ-lorraine.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?resources=24302,24303,24307,24308,24309,24310,24314,24304,24305,24306,24311,24312,57501&projectId=6&calType=ical&nbWeeks=1';
+		$url = "https://planning.univ-lorraine.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?resources=24302,24303,24307,24308,24309,24310,24314,24304,24305,24306,24311,24312,57501&projectId=6&calType=ical&nbWeeks=1";
 		$file = fopen('assets/ics/agenda.ics', 'w+');
 
 		//on garde une copie locale pour soulager le serveur de l'univ
-		fwrite($file, @file_get_contents($url));
+		$content = file_get_contents($url, true);
+        var_dump($content);
+		fwrite($file, $content);
 		fclose($file);
-	}
+	//}
 
 	// on ouvre le fichier contenant les données agenda
 	$data = fopen('assets/ics/agenda.ics', 'r');
