@@ -37,10 +37,10 @@
                 $code = $code . ' nfree">';
             }
             $code = $code .'
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                             <h5> ' . $name . ' <img src="assets/img/' . ($i < 7 ? 'Linux.png' : 'Windows.png') . '"/></h5>
                         </div>
-                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-8">';
+                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">';
             $debut = 8;
             $filler = 0;
             asort($roomEdt);
