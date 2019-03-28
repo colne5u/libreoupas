@@ -7,10 +7,10 @@
                     <div class="panel-heading">
                         <div class="container-fluid">
                             <div class="row">
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-5">
                                     <h3><span class="glyphicon glyphicon-education"></span>&#9;Salle</h3>
                                 </div>
-                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-8">
+                                <div class="col-lg-9 col-md-9 col-sm-8 col-xs-7">
                                     <h3><span class="glyphicon glyphicon-calendar"></span>&#9;EDT</h3>
                                 </div>
                             </div>
@@ -37,10 +37,10 @@
                 $code = $code . ' nfree">';
             }
             $code = $code .'
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <h5> ' . $name . ' <img src="assets/img/' . ($i < 7 ? 'Linux.png' : 'Windows.png') . '"/></h5>
                         </div>
-                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">';
+                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">';
             $debut = 8;
             $filler = 0;
             asort($roomEdt);
