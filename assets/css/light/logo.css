@@ -3,20 +3,28 @@
 }
 
 .free {
-    color: #468847;
     background-color: #dff0d8;
     border-color: #d6e9c6;
 }
 
 .nfree {
-    color: #b94a48;
     background-color: #f2dede;
     border-color: #eed3d7;
 }
 
 .range {
-    margin-top: 10;
-    margin-bottom: 10;
+    color: #b94a48;
+    margin-top: 15px;
+    margin-bottom: 10px;
     padding-left: 0;
     padding-right: 0;
+    border-color: rgba(0, 0, 0, 0.6);
+    text-align: center;
+}
+
+.range .panel-heading {
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
 }
