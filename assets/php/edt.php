@@ -28,7 +28,6 @@
 
     function addCurrentEdt($edt, $free, $type) {
         $code = '';
-        $i = 0;
         $onlyLinux  = isset($_COOKIE["ONLY_LINUX"]) && $_COOKIE["ONLY_LINUX"];
         $onlyWindow = isset($_COOKIE["ONLY_WIN"])   && $_COOKIE["ONLY_WIN"];
         $onlyFree   = isset($_COOKIE["ONLY_FREE"])  && $_COOKIE["ONLY_FREE"];

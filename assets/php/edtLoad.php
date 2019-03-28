@@ -15,18 +15,18 @@
 	$today = date('d');
 	$hour = date('H') + (date('i') / 60.0);
 
-	$rooms = array("HP 303" => "Linux",
+	$rooms = array("HP 301" => "Windows",
+                   "HP 303" => "Linux",
+                   "HP 306" => "Windows",
+                   "HP 307" => "Windows",
                    "HP 309" => "Linux",
                    "HP 310" => "Linux",
                    "HP 311" => "Linux",
                    "HP 312" => "Linux",
                    "HP 315" => "Linux",
-                   "HP 319" => "Linux",
-                   "HP 301" => "Windows",
-                   "HP 306" => "Windows",
-                   "HP 307" => "Windows",
                    "HP 316" => "Windows",
                    "HP 318" => "Windows",
+                   "HP 319" => "Linux",
                    "HP 320" => "Windows");
 	foreach ($rooms as $room => $roomType) {
 		$edt[$room] = array();
