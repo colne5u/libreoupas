@@ -1,3 +1,15 @@
 #Logo {
     filter : invert(100%);
 }
+
+.free {
+    color: white;
+    background-color: #62c462;
+    border-color: rgba(0, 0, 0, 0.6);
+}
+
+.nfree {
+    color: white;
+    background-color: #ee5f5b;
+    border-color: rgba(0, 0, 0, 0.6);
+}

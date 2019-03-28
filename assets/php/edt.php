@@ -1,6 +1,6 @@
 <?php
 
-    function addEdt($edt) {
+    function addEdt($edt, $libre) {
         $code =
             '<div class="col-lg-12">
                 <div class="panel panel-info">
@@ -18,7 +18,7 @@
                     </div>
                     <div class="panel-body">
                         <div class="contained-fluid">
-                            ' . addCurrentEdt($edt) . '
+                            ' . addCurrentEdt($edt, $libre) . '
                         </div>
                     </div>
                 </div>
@@ -26,23 +26,24 @@
         echo $code;
     }
 
-    function addCurrentEdt($edt) {
+    function addCurrentEdt($edt, $libre) {
         $code = '';
         $i = 0;
         foreach ($edt as $name => $roomEdt) {
-            $code = '<div class="row panel-heading';
+            $code = $code . '<div class="row panel';
             if ($libre[$name]) {
-                $code = $code . ' panel-success">';
+                $code = $code . ' free">';
             } else {
-                $code = $code . ' panel-danger">';
+                $code = $code . ' nfree">';
             }
-            $code = '   <div class="col-lg-3">
+            $code = $code .'   <div class="col-lg-3">
                             <h3> ' . $name . ' <img src="assets/img/' . ($i < 7 ? 'Linux.png' : 'Windows.png') . '"/></h3>
                         </div>
                         <div class="col-lg-9">
                         </div>
                     </div>
                         ';
+            $i++;
         }
         return $code;
     }

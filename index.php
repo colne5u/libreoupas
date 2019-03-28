@@ -21,7 +21,7 @@
             </header>
             <?php addNavigationBar(); ?>
             <section id="content" class="row">
-                <?php addEdt($edt) ?>
+                <?php addEdt($edt, $libre) ?>
             </section>
         </div>
         <script src="assets/js/jquery.min.js"></script>
