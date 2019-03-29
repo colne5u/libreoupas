@@ -69,11 +69,11 @@
 		}
         foreach ($edt as $name => $roomEdt) {
             foreach ($roomEdt as $range) {
-                if ($hour > $range['start'] && $hour < $range['end']) {
+                if ($hour > intval($range['start']) && $hour < $range['end']) {
 					$free[$name] = 0;
                     $maybeFree = true;
                     foreach ($roomEdt as $tmpRange) {
-                        if ($hour + 1 > $tmpRange['start'] - 0.25 && $hour + 1 < $tmpRange['end'] + 0.25) {
+                        if ($hour + 1 > intval($tmpRange['start']) && $hour + 1 < $tmpRange['end']) {
                             $maybeFree = false;
                         }
                     }
