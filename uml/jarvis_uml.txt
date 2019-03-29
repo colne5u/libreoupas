@@ -1,0 +1,28 @@
+@startuml
+
+class Site {
+}
+Site --"1" Index
+
+abstract class Page {
+}
+Site --"*" Page
+
+class Index extends Page {
+}
+class Contact extends Page {
+}
+class Presentation extends Page {
+}
+
+class Menu {
+}
+class Body {
+}
+class Footer {
+}
+Page --"1" Menu
+Page --"1" Body
+Page --"1" Footer
+
+@enduml
