@@ -31,7 +31,7 @@
 	foreach ($rooms as $room => $roomType) {
 		$edt[$room] = array();
         $type[$room] = $roomType;
-		$free[$room] = true;
+		$free[$room] = 1;
 	}
 
 	$hourOffset = 1;
@@ -65,12 +65,24 @@
 					   .($endHour   < 10 ? '0' : '') . $endHour   . ':'
 					   .($endMin    < 10 ? '0' : '') . $endMin;
 				$edt[$name][$index]['text'] = $text;
-
-				if ($hour > $edt[$name][$index]['start'] && $hour < $edt[$name][$index]['end']) {
-					$free[$name] = false;
-                }
 			}
 		}
+        foreach ($edt as $name => $roomEdt) {
+            foreach ($roomEdt as $range) {
+                if ($hour > $range['start'] && $hour < $range['end']) {
+					$free[$name] = 0;
+                    $maybeFree = true;
+                    foreach ($roomEdt as $tmpRange) {
+                        if ($hour + 1 > $tmpRange['start'] && $hour + 1 < $tmpRange['end']) {
+                            $maybeFree = false;
+                        }
+                    }
+                    if ($maybeFree) {
+                        $free[$name] = 2;
+                    }
+                }
+            }
+        }
 	}
 
 	fclose($data);

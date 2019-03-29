@@ -33,12 +33,14 @@
         $onlyFree   = isset($_COOKIE["ONLY_FREE"])  && $_COOKIE["ONLY_FREE"];
         foreach ($edt as $name => $roomEdt) {
             if (($onlyLinux && $type[$name] == "Linux") || ($onlyWindow && $type[$name] == "Windows") || (!$onlyLinux && !$onlyWindow)) {
-                if ($onlyFree && $free[$name] || !$onlyFree) {
+                if ($onlyFree && $free[$name] > 0 || !$onlyFree) {
                     $code = $code . '<div class="row panel';
-                    if ($free[$name]) {
+                    if ($free[$name] == 0) {
+                        $code = $code . ' nfree">';
+                    } else if ($free[$name] == 1){
                         $code = $code . ' free">';
                     } else {
-                        $code = $code . ' nfree">';
+                        $code = $code . ' wfree">';
                     }
                     $code = $code .'
                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
