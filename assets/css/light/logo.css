@@ -17,6 +17,41 @@
     border-color: #fbeed5;
 }
 
+.spanFree {
+    background-color: #dff0d8;
+    border-color: rgba(0, 0, 0, 0.6);
+    border: 1px solid;
+    min-width: 20px;
+    min-height: 20px;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+.spanWFree {
+    background-color: #fcf8e3;
+    border-color: rgba(0, 0, 0, 0.6);
+    border: 1px solid;
+    min-width: 20px;
+    min-height: 20px;
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    display: inline-block;
+}
+
+.spanNFree {
+    background-color: #f2dede;
+    border: 1px solid;
+    border-color: rgba(0, 0, 0, 0.6);
+    min-width: 20px;
+    min-height: 20px;
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    display: inline-block;
+}
+
 .range {
     color: #b94a48;
     margin-top: 15px;

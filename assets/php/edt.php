@@ -11,7 +11,7 @@
                                     <h3><span class="glyphicon glyphicon-education"></span>&#9;Salle</h3>
                                 </div>
                                 <div class="col-lg-9 col-md-9 col-sm-8 col-xs-7">
-                                    <h3><span class="glyphicon glyphicon-calendar"></span>&#9;EDT</h3>
+                                    <h3><span class="glyphicon glyphicon-calendar"></span>&#9;EDT&#9;<span class="spanFree"></span><b>Libre</b><span class="spanWFree"></span><b>Bientôt libre</b><span class="spanNFree"></span><b>Occupée</b></h3>
                                 </div>
                             </div>
                         </div>
