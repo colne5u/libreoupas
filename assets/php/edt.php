@@ -10,8 +10,11 @@
                                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-5">
                                     <h3><span class="glyphicon glyphicon-education"></span>&#9;Salle</h3>
                                 </div>
-                                <div class="col-lg-9 col-md-9 col-sm-8 col-xs-7">
-                                    <h3><span class="glyphicon glyphicon-calendar"></span>&#9;EDT&#9;<span class="spanFree"></span><b>Libre</b><span class="spanWFree"></span><b>Bientôt libre</b><span class="spanNFree"></span><b>Occupée</b></h3>
+                                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                                    <h3><span class="glyphicon glyphicon-calendar"></span>&#9;EDT</h3>
+                                </div>
+                                <div class="col-lg-7 col-md-7 col-sm-5 col-xs-12">
+                                    <span class="spanFree"></span><b>Libre</b><span class="spanWFree"></span><b>Bientôt libre</b><span class="spanNFree"></span><b>Occupée</b>
                                 </div>
                             </div>
                         </div>
