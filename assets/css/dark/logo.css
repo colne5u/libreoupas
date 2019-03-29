@@ -29,6 +29,7 @@
     width: 20px;
     height: 20px;
     display: inline-block;
+    margin-right: 10px;
 }
 
 .spanWFree {
@@ -41,6 +42,7 @@
     width: 20px;
     height: 20px;
     display: inline-block;
+    margin-right: 10px;
 }
 
 .spanNFree {
@@ -53,6 +55,7 @@
     width: 20px;
     height: 20px;
     display: inline-block;
+    margin-right: 10px;
 }
 
 .range {
