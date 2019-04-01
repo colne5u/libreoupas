@@ -58,7 +58,7 @@
                         if ($filler > 0) {
                             $code = $code . '<div class="col-lg-' . $filler . ' col-md-' . $filler . ' col-sm-' . $filler . ' col-xs-' . $filler . '"></div>';
                         }
-                        $size = $range['end'] - $range['start'];
+                        $size = intval(range['end'] - $range['start']);
                         $code = $code . '<div class="panel range col-lg-' . $size . ' col-md-' . $size . ' col-sm-' . $size . ' col-xs-' . $size . '"><div class="panel-heading">' . $range['text'] . '</div></div>';
                         $start = $start + $filler + $size;
                     }
