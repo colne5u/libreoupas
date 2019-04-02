@@ -3,16 +3,22 @@
 }
 
 .free {
+    margin-top: 15px;
+    margin-bottom: 10px;
     background-color: #dff0d8;
     border-color: #d6e9c6;
 }
 
 .nfree {
+    margin-top: 15px;
+    margin-bottom: 10px;
     background-color: #f2dede;
     border-color: #eed3d7;
 }
 
 .wfree {
+    margin-top: 15px;
+    margin-bottom: 10px;
     background-color: #fcf8e3;
     border-color: #fbeed5;
 }
@@ -55,6 +61,32 @@
     margin-right: 10px;
 }
 
+.bordered {
+    margin-top: 15px;
+    border: 1px solid;
+    margin-bottom: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    background: none;
+    border-radius: 0px;
+    background-color: lightgray;
+}
+
+.fillerHidden {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    background: none;
+    border-radius: 0px;
+    box-shadow: none;
+    background-color: lightgray;
+}
+
 .range {
     color: #b94a48;
     margin-top: 15px;
@@ -63,6 +95,7 @@
     padding-right: 0;
     border-color: rgba(0, 0, 0, 0.6);
     text-align: center;
+    border-radius: 0px;
 }
 
 .range .panel-heading {

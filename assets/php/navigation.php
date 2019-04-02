@@ -34,6 +34,10 @@
                                     <input type="checkbox" id="onlyFree"    onclick="addOnlyFree()"    autocomplete="off"/>
                                     <label for="onlyLinux">Uniquement Libres</label>
                                 </li>
+                                <li class="form-group">
+                                    <input type="checkbox" id="grid"        onclick="addGrid()"        autocomplete="off"/>
+                                    <label for="grid">Afficher la grille</label>
+                                </li>
                             </ul>
                         </li>
                     </ul>

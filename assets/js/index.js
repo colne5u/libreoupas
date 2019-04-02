@@ -77,7 +77,16 @@
         } else {
             document.cookie = "ONLY_FREE=0; expires=Fri, 31 Dec 2100 23:59:59 GMT; path=/";
         }
-        window.location.reload()
+        window.location.reload();
+    }
+
+    function addGrid() {
+        if ($("#grid").prop('checked')) {
+            document.cookie = "GRID=1; expires=Fri, 31 Dec 2100 23:59:59 GMT; path=/";
+        } else {
+            document.cookie = "GRID=0; expires=Fri, 31 Dec 2100 23:59:59 GMT; path=/";
+        }
+        window.location.reload();
     }
 
     $(function(){
@@ -107,5 +116,10 @@
             $("#onlyFree").prop("checked", true);
         } else {
             $("#onlyFree").prop("checked", false);
+        }
+        if (getCookie("GRID") == "1" || getCookie("GRID") == "") {
+            $("#grid").prop("checked", true);
+        } else {
+            $("#grid").prop("checked", false);
         }
     });
