@@ -19,7 +19,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel-body">
+                    <div id="floatingbar" class="floatingbar">
+                    </div>
+                    <div id="content-body" class="panel-body">
                         <div class="contained-fluid">
                             ' . addCurrentEdt($edt, $free, $type) . '
                         </div>
@@ -50,7 +52,7 @@
                     $code = $code . '
                                     <h5> ' . $name . ' <img src="assets/img/' . $type[$name] . '.png"/></h5>
                                 </div>
-                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">';
+                                <div class="edtRow col-lg-9 col-md-9 col-sm-9 col-xs-12">';
                     $start = 8;
                     $filler = 0;
                     asort($roomEdt);
@@ -58,7 +60,7 @@
                         $filler = intval($range['start'] - $start);
                         $tmpFiller = $filler;
                         while ($tmpFiller > 0) {
-                            $code = $code . '<div class="panel ';
+                            $code = $code . '<div class="edtCol panel ';
                             if ($printGrid) {
                                 $code = $code . 'bordered ';
                             } else {
@@ -68,11 +70,11 @@
                             $tmpFiller--;
                         }
                         $size = intval($range['end'] - $range['start']);
-                        $code = $code . '<div class="panel range col-lg-' . $size . ' col-md-' . $size . ' col-sm-' . $size . ' col-xs-' . $size . '"><div class="panel-heading">' . $range['text'] . '</div></div>';
+                        $code = $code . '<div class="edtCol panel range col-lg-' . $size . ' col-md-' . $size . ' col-sm-' . $size . ' col-xs-' . $size . '"><div class="panel-heading">' . $range['text'] . '</div></div>';
                         $start = $start + $filler + $size;
                     }
-                    while ($start < 18) {
-                        $code = $code . '<div class="panel ';
+                    while ($start < 20) {
+                        $code = $code . '<div class="edtCol panel ';
                         if ($printGrid) {
                             $code = $code . 'bordered ';
                         } else {

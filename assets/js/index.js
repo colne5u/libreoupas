@@ -89,19 +89,7 @@
         window.location.reload();
     }
 
-    $(function(){
-        var cookie = getCookie("theme");
-        if (cookie == "") {
-            document.cookie = "theme=light; expires=Fri, 31 Dec 2100 23:59:59 GMT; path=/";
-        }
-        var currentCSS = $('<link href="'+ themes['default'] + '" rel="stylesheet" />');
-        currentCSS.appendTo('head');
-        $('.theme-link').click(function() {
-           var newCSS = themes[$(this).attr('data-theme')];
-           currentCSS.attr('href', newCSS);
-           document.cookie = "theme=" + $(this).attr('data-theme') + "; expires=Fri, 31 Dec 2100 23:59:59 GMT; path=/";
-           window.location.reload()
-        });
+    function initializeCookie() {
         if (getCookie("ONLY_LINUX") == "1") {
             $("#onlyLinux").prop("checked", true);
         } else {
@@ -122,4 +110,44 @@
         } else {
             $("#grid").prop("checked", false);
         }
+    }
+
+    function reloadBar() {
+        var dt = new Date();
+        var hourSize = $(".edtCol").width() + 11.5;
+        var minSize = hourSize / 60.0;
+        var start = $(".edtRow").position().left + 15;
+        var min = 8;
+        var max = 20;
+        if (dt.getHours() >= max) {
+            current = start + (max - min) * hourSize;
+        }
+        if (dt.getHours() < min) {
+            current = start + min * hourSize;
+        }
+        var nbCol = dt.getHours() - min;
+        var current = start + nbCol * hourSize;
+        current += minSize * dt.getMinutes();
+        $("#floatingbar").css("left", current + "px");
+        $("#floatingbar").css("height", ($("#content-body").height() + 2 * parseInt($("#content-body").css("padding-top"))) + "px");
+    }
+
+    $(function(){
+        var cookie = getCookie("theme");
+        if (cookie == "") {
+            document.cookie = "theme=light; expires=Fri, 31 Dec 2100 23:59:59 GMT; path=/";
+        }
+        var currentCSS = $('<link href="'+ themes['default'] + '" rel="stylesheet" />');
+        currentCSS.appendTo('head');
+        $('.theme-link').click(function() {
+           var newCSS = themes[$(this).attr('data-theme')];
+           currentCSS.attr('href', newCSS);
+           document.cookie = "theme=" + $(this).attr('data-theme') + "; expires=Fri, 31 Dec 2100 23:59:59 GMT; path=/";
+           window.location.reload();
+        });
+        initializeCookie();
+        reloadBar();
+        $(window).on('resize', function(e) {
+            reloadBar();
+        });
     });

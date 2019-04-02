@@ -114,3 +114,13 @@ h5 {
     margin-bottom: 0px;
     margin-top: 0px;
 }
+
+.floatingbar {
+    position: absolute;
+    padding-top: 0px;
+    width: 1px;
+    max-width: 1px;
+    border: 1px dotted red;
+    height: inherit;
+    z-index: 1000;
+}
