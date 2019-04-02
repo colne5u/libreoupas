@@ -34,7 +34,7 @@
 		$free[$room] = 1;
 	}
 
-	$hourOffset = 1;
+	$hourOffset = 0;
 	while (($line = fgets($data)) !== false) {
 		$key = substr($line, 0, 7);
 
