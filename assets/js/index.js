@@ -119,15 +119,15 @@
         var start = $(".edtRow").position().left + 15;
         var min = 8;
         var max = 20;
+        var nbCol = dt.getHours() - min;
+        var current = start + nbCol * hourSize;
+        current += minSize * dt.getMinutes();
         if (dt.getHours() >= max) {
             current = start + (max - min) * hourSize;
         }
         if (dt.getHours() < min) {
             current = start + min * hourSize;
         }
-        var nbCol = dt.getHours() - min;
-        var current = start + nbCol * hourSize;
-        current += minSize * dt.getMinutes();
         $("#floatingbar").css("left", current + "px");
         $("#floatingbar").css("height", ($("#content-body").height() + 2 * parseInt($("#content-body").css("padding-top"))) + "px");
     }

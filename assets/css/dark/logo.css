@@ -4,7 +4,7 @@
 
 .free {
     margin-top: 15px;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     color: white;
     background-color: #62c462;
     border-color: rgba(0, 0, 0, 0.6);
@@ -12,7 +12,7 @@
 
 .nfree {
     margin-top: 15px;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     color: white;
     background-color: #ee5f5b;
     border-color: rgba(0, 0, 0, 0.6);
@@ -20,7 +20,7 @@
 
 .wfree {
     margin-top: 15px;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     color: white;
     background-color: #f89406;
     border-color: rgba(0, 0, 0, 0.6);

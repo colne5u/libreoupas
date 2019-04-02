@@ -4,21 +4,21 @@
 
 .free {
     margin-top: 15px;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     background-color: #dff0d8;
     border-color: #d6e9c6;
 }
 
 .nfree {
     margin-top: 15px;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     background-color: #f2dede;
     border-color: #eed3d7;
 }
 
 .wfree {
     margin-top: 15px;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     background-color: #fcf8e3;
     border-color: #fbeed5;
 }
