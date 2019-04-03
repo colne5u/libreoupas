@@ -16,6 +16,7 @@
 	$hour = date('H') + (date('i') / 60.0);
 
 	$rooms = array("HP 301" => "Windows",
+                   "HP 302" => "Windows",
                    "HP 303" => "Linux",
                    "HP 306" => "Windows",
                    "HP 307" => "Windows",
