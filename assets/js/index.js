@@ -126,7 +126,7 @@
             current = start + (max - min) * hourSize;
         }
         if (dt.getHours() < min) {
-            current = start + min * hourSize;
+            current = start;
         }
         $("#floatingbar").css("left", current + "px");
         $("#floatingbar").css("height", ($("#content-body").height() + 2 * parseInt($("#content-body").css("padding-top"))) + "px");
