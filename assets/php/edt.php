@@ -70,7 +70,7 @@
                             $tmpFiller--;
                         }
                         $size = intval($range['end'] - $range['start']);
-                        $code = $code . '<div class="edtCol panel range col-lg-' . $size . ' col-md-' . $size . ' col-sm-' . $size . ' col-xs-' . $size . '"><div class="panel-heading">' . $range['text'] . '</div></div>';
+                        $code = $code . '<div class="panel range col-lg-' . $size . ' col-md-' . $size . ' col-sm-' . $size . ' col-xs-' . $size . '"><div class="panel-heading">' . $range['text'] . '</div></div>';
                         $start = $start + $filler + $size;
                     }
                     while ($start < 20) {

@@ -113,19 +113,24 @@
     }
 
     function reloadBar() {
-        var dt = new Date();
+        moment().locale();
+        var dt = moment().format('LT');
+        var h = dt.substring(0, 2);
+        var m = dt.substring(3, 5);
         var hourSize = $(".edtCol").width() + 11.5;
         var minSize = hourSize / 60.0;
         var start = $(".edtRow").position().left + 15;
         var min = 8;
         var max = 20;
-        var nbCol = dt.getHours() - min;
+        console.log(start);
+        console.log(hourSize);
+        var nbCol = h - min;
         var current = start + nbCol * hourSize;
-        current += minSize * dt.getMinutes();
-        if (dt.getHours() >= max) {
+        current += minSize * m;
+        if (h >= max) {
             current = start + (max - min) * hourSize;
         }
-        if (dt.getHours() < min) {
+        if (h < min) {
             current = start;
         }
         $("#floatingbar").css("left", current + "px");

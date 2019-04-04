@@ -30,6 +30,7 @@
         </div>
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/moment.js"></script>
         <script src="assets/js/index.js"></script>
     </body>
 </html>
