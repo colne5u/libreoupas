@@ -113,10 +113,10 @@
     }
 
     function reloadBar() {
-        moment().locale();
-        var dt = moment().format('HH mm');
-        var h = dt.substring(0, 2);
-        var m = dt.substring(3, 5);
+        moment.locale();
+        var dt = moment()._d;
+        var h = dt.getHours();
+        var m = dt.getMinutes();
         var hourSize = $(".edtCol").width() + 11.5;
         var minSize = hourSize / 60.0;
         var start = $(".edtRow").position().left + 15;
