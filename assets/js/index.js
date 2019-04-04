@@ -116,10 +116,7 @@
         var dt = $("#navDate").text();
         var h = dt.substring(0, 2);
         var m = dt.substring(3, 5);
-        alert(dt);
-        alert(h);
-        alert(m);
-        var hourSize = $(".edtCol").width() + 11.5;
+        var hourSize = document.getElementsByClassName("edtCol")[0].clientWidth + 1.5;
         var minSize = hourSize / 60.0;
         var start = $(".edtRow").position().left + 15;
         var min = 8;
