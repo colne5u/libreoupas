@@ -114,7 +114,7 @@
 
     function reloadBar() {
         moment().locale();
-        var dt = moment().format('LT');
+        var dt = moment().format('HH mm');
         var h = dt.substring(0, 2);
         var m = dt.substring(3, 5);
         var hourSize = $(".edtCol").width() + 11.5;
@@ -122,8 +122,6 @@
         var start = $(".edtRow").position().left + 15;
         var min = 8;
         var max = 20;
-        console.log(start);
-        console.log(hourSize);
         var nbCol = h - min;
         var current = start + nbCol * hourSize;
         current += minSize * m;
