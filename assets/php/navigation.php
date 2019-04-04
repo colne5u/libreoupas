@@ -8,7 +8,7 @@
         '<nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" hred="index.php">' . date('H:i') . '</a>
+                    <a id="navDate" class="navbar-brand" hred="index.php">' . date('H:i') . '</a>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" data-label-expanded="Close" aria-expanded="false">
                         <span class="sr-only">(toggle)</span>
                         <span class="navbar-toggle-icon glyphicon glyphicon-menu-hamburger"></span>
