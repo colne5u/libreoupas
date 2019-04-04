@@ -116,22 +116,27 @@
         var dt = $("#navDate").text();
         var h = dt.substring(0, 2);
         var m = dt.substring(3, 5);
-        var hourSize = document.getElementsByClassName("edtCol")[0].clientWidth + 1.5;
-        var minSize = hourSize / 60.0;
-        var start = $(".edtRow").position().left + 15;
-        var min = 8;
-        var max = 20;
-        var nbCol = h - min;
-        var current = start + nbCol * hourSize;
-        current += minSize * m;
-        if (h >= max) {
-            current = start + (max - min) * hourSize;
+        if ( document.getElementsByClassName("edtCol").length <= 0) {
+            $("#floatingbar").css("visibility", "hidden");
+        } else {
+            $("#floatingbar").css("visibility", "visible");
+            var hourSize = document.getElementsByClassName("edtCol")[0].clientWidth + 1.5;
+            var minSize = hourSize / 60.0;
+            var start = $(".edtRow").position().left + 15;
+            var min = 8;
+            var max = 20;
+            var nbCol = h - min;
+            var current = start + nbCol * hourSize;
+            current += minSize * m;
+            if (h >= max) {
+                current = start + (max - min) * hourSize;
+            }
+            if (h < min) {
+                current = start;
+            }
+            $("#floatingbar").css("left", current + "px");
+            $("#floatingbar").css("height", ($("#content-body").height() + 2 * parseInt($("#content-body").css("padding-top"))) + "px");
         }
-        if (h < min) {
-            current = start;
-        }
-        $("#floatingbar").css("left", current + "px");
-        $("#floatingbar").css("height", ($("#content-body").height() + 2 * parseInt($("#content-body").css("padding-top"))) + "px");
     }
 
     $(function(){
