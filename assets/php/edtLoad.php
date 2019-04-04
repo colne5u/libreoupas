@@ -74,7 +74,7 @@
 					$free[$name] = 0;
                     $maybeFree = true;
                     foreach ($roomEdt as $tmpRange) {
-                        if ($hour + 0.5 > intval($tmpRange['start']) && $hour + 0.5 < $tmpRange['end']) {
+                        if ($hour + 0.5 >= intval($tmpRange['start']) && $hour + 0.5 <= $tmpRange['end']) {
                             $maybeFree = false;
                         }
                     }
