@@ -123,3 +123,11 @@ h5 {
     clear: left;
     display: block;
 }
+
+#optionsList {
+    min-width: 200px;
+}
+
+#optionsList li {
+    padding-left: 5px;
+}

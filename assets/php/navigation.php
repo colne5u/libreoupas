@@ -21,7 +21,7 @@
         $code = $code . '
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Options <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu" id="optionsList">
                                 <li class="form-group">
                                     <input type="checkbox" id="onlyLinux"   onclick="addOnlyLinux()"   autocomplete="off"/>
                                     <label for="onlyLinux">Uniquement Linux</label>
