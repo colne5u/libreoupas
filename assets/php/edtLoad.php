@@ -2,7 +2,7 @@
     // If no file or not recently updated (4h)
 	if (!(file_exists("assets/ics/agenda.ics") && (time() - filemtime('assets/ics/agenda.ics')) < 14400)) {
         // University's file
-		$url = "https://planning.univ-lorraine.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?resources=24302,24303,24307,24308,24309,24310,24314,24304,24305,24306,24311,24312,57501&projectId=6&calType=ical&nbWeeks=1";
+		$url = "https://planning.univ-lorraine.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?resources=24302,24303,24308,24310,24314,24307,24309,57501,24312,24311,24306,24305,24304&projectId=7&calType=ical&nbWeeks=1";
 		$file = fopen('assets/ics/agenda.ics', 'w+');
 
         // Local's copy
@@ -56,7 +56,7 @@
 			$name = substr($line, 20, 6);
 
 			if ($day == $today && $name !== false) {
-				$index = count($edt[$name]); //index du cours dans cette salle
+				@$index = count($edt[$name]); //index du cours dans cette salle
 
 				$edt[$name][$index]['start'] = $startHour + ($startMin / 60.0); //ex 10h15 = 10.25
 				$edt[$name][$index]['end'] = $endHour + ($endMin / 60.0);
@@ -70,18 +70,20 @@
 		}
         foreach ($edt as $name => $roomEdt) {
             foreach ($roomEdt as $range) {
-                if ($hour > intval($range['start']) && $hour < $range['end']) {
-					$free[$name] = 0;
-                    $maybeFree = true;
-                    foreach ($roomEdt as $tmpRange) {
-                        if ($hour + 0.5 >= intval($tmpRange['start']) && $hour + 0.5 <= $tmpRange['end']) {
-                            $maybeFree = false;
-                        }
-                    }
-                    if ($maybeFree) {
-                        $free[$name] = 2;
-                    }
-                }
+            	if($roomEdt != "HP 12" && $roomEdt != "VG SC") {
+					if ($hour > intval($range['start']) && $hour < $range['end']) {
+						$free[$name] = 0;
+						$maybeFree = true;
+						foreach ($roomEdt as $tmpRange) {
+							if ($hour + 0.5 >= intval($tmpRange['start']) && $hour + 0.5 <= $tmpRange['end']) {
+								$maybeFree = false;
+							}
+						}
+						if ($maybeFree) {
+							$free[$name] = 2;
+						}
+					}
+				}
             }
         }
 	}
