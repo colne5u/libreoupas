@@ -35,7 +35,7 @@
 		$free[$room] = 1;
 	}
 
-	$hourOffset = 2;
+	$hourOffset = 1; // = 1 en heure d'hiver, = 2 en heur d'été 
 	while (($line = fgets($data)) !== false) {
 		$key = substr($line, 0, 7);
 
