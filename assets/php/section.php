@@ -10,7 +10,7 @@
                         addContact();
                         break;
                     }
-                    case "Administrateur": {
+                    case "Statistiques": {
                         addAdmin();
                         break;
                     }

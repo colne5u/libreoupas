@@ -43,8 +43,7 @@
                     </ul>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav navbar-right">';
-        $code = $code . addNavigationItem("Administrateur");
-        $code = $code . addNavigationItem("Contact");
+        $code = $code . addNavigationItem("Statistiques");
         $code = $code . '
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Thèmes <b class="caret"></b></a>
