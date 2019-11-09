@@ -2,6 +2,7 @@
         include "assets/php/edt.php";
         include "assets/php/contact.php";
         include "assets/php/admin.php";
+        include "assets/php/maj.php";
 
         function addContent($edt, $free, $type) {
             if (isset($_GET["tab"])) {
@@ -12,6 +13,10 @@
                     }
                     case "Statistiques": {
                         addAdmin();
+                        break;
+                    }
+                    case "Dernières MAJ": {
+                        addMaj();
                         break;
                     }
                     default: {
