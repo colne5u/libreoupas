@@ -2,7 +2,7 @@
     <head>
 		<meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>libreoupas</title>
+        <title>Clément Colné &mdash; libreoupas</title>
         <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico" />
 		<?php
             include "assets/php/visitor.php";
